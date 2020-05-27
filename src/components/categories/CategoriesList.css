@@ -1,0 +1,30 @@
+
+.SelectedSidebarText{
+    color: #0078D7;
+    padding:10px;  
+}
+.UnselectedSidebarText{
+    color: black;
+    padding:10px;
+    
+}
+.Sidebar{
+    background-color: #F4F4F4;
+    padding: 10px;
+  }
+
+.TextNewCategory {
+   margin: 10px; 
+   font-size: 14px;
+   color: #0078D7;
+}  
+
+.inputCategory {
+    border: 0;
+    outline: 0;
+    margin: 10px;
+    font-size: 14px;
+    width: 100%;
+    padding: 8px;
+  }
+  

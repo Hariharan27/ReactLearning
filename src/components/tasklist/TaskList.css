@@ -1,0 +1,52 @@
+
+.rowC {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #808080;
+}
+
+.rowCSelected {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px;
+  background-color:#0078D7  ;
+  border-bottom: 1px solid #808080;
+}
+
+.rowchildTwo {
+    flex: 0.9;
+    padding-left: 8px;
+  }
+
+  .TextNewCategory {
+    margin: 10px; 
+    font-size: 14px;
+    color: #0078D7;
+  }
+
+  .TaskContainer{
+    padding: 10px;
+  }
+
+  .TextSize{
+    font-size: 18px;
+    color: #0078D7;
+  }
+  
+  .TextNewSize{
+    font-size: 14px;
+    color: #0078D7;
+  }
+
+  .input {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border-bottom: 2px solid #0078D7;
+  }
+  

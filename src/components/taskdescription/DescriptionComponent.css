@@ -1,0 +1,32 @@
+
+.Sidebar{
+    background-color: #F4F4F4;
+    padding: 10px;
+  }
+
+.rowCA {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px;
+}
+  
+.descriptionlable{
+    margin:10px;
+}
+  
+.descriptionlablewithcolor{
+    margin:10px;
+    color: #0078D7;
+  
+}
+  
+.inputDescription {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    height: 200px;
+    padding: 8px;
+    font-size: 14px;
+    border: 2px solid #0078D7;
+  }
