@@ -38,7 +38,8 @@ function rootReducer(state = initialState, action) {
         categories: list,
         showDescription: false,
         isEditable: false,
-        isCategoryEditable: false
+        isCategoryEditable: false,
+        selectedTask:null
       };
     case ADD_NEW_TASK:
       var catlist = [];

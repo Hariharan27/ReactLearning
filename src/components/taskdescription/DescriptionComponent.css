@@ -8,7 +8,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 8px;
+    padding: 5px;
+    background-color: white;
 }
   
 .descriptionlable{
@@ -20,13 +21,22 @@
     color: #0078D7;
   
 }
+
+.descriptionlablewithcolorStrike{
+    margin:10px;
+    color: #0078D7;
+    text-decoration: line-through; 
+}
   
 .inputDescription {
     border: 0;
     outline: 0;
     width: 100%;
-    height: 200px;
     padding: 8px;
     font-size: 14px;
-    border: 2px solid #0078D7;
+  }
+
+  .whitebackground{
+      background-color: white;
+      padding: 10px;
   }

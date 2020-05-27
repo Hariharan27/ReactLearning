@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
             <Container fluid>
                 <Row className='fill-window'>
                     <CategoriesList categories={categories} isCategoryEditable={isCategoryEditable} />
-                    <TaskList  weight={showDescription ? 8 : 8} category={selected} />
+                    <TaskList selectedTask={selectedTask}  weight={showDescription ? 8 : 8} category={selected} />
                     {showDescription ? <DescriptionComponent completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} /> : null}
                 </Row>
             </Container>

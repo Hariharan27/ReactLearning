@@ -3,6 +3,7 @@ import { Col, ListGroup } from 'react-bootstrap';
 import './TaskList.css';
 import { connect } from "react-redux";
 import * as CategoryAction from '../../redux/actions/index'
+import FontAwesome from 'react-fontawesome';
 
 
 class TaskList extends React.Component {
@@ -47,18 +48,20 @@ class TaskList extends React.Component {
     }
 
 
-    getListItems(category) {
+    getListItems(category,selectedTask) {
         return category[0].tasks.filter(function (task) {
             return task.isCompleted !== true;
         }).map((item, index) => (
-            <div key={index} className='rowC'>
+            <div key={index} className={selectedTask!=null&&selectedTask.id === item.id?'rowCSelected':'rowC'}>
                 <input type="checkbox" checked={item.isCompleted} name={item.id} onChange={this.onMarkusCompleted} />
-                <div className='rowchildTwo' onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
+                <div className='rowchildTwo' >
+                <div  onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
+                </div>
             </div>
         ))
     }
 
-    getCompletedListItem(category) {
+    getCompletedListItem(category,selectedTask) {
 
         const completedtask = category[0].tasks.filter(function (task) {
             return task.isCompleted;
@@ -69,9 +72,9 @@ class TaskList extends React.Component {
             <ListGroup variant="flush">
                 <label className='TextNewCategory'> Completed </label>
                 {completedtask.map((item, index) => (
-                    <div key={index} className='rowC'>
+                    <div key={index} className={selectedTask!=null&&selectedTask.id === item.id?'rowCSelected':'rowC'}>
                         <input type="checkbox" checked={item.isCompleted} name={item.id} onChange={this.onMarkusCompleted} />
-                        <div className='rowchildTwo' onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
+                        <div className='crossed-line' onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
                     </div>
                 ))}
             </ListGroup>
@@ -80,7 +83,7 @@ class TaskList extends React.Component {
     }
 
     render() {
-        const { isEditable, category, weight } = this.props;
+        const { isEditable, category, weight, selectedTask } = this.props;
         const { taskname } = this.state;
         return (
             <Col xs={weight} className='TaskContainer' >
@@ -92,10 +95,10 @@ class TaskList extends React.Component {
                     : <div className='TextNewSize' onClick={this.makeEditable}>+ Add a task</div>}
 
                 <ListGroup variant="flush">
-                    {this.getListItems(category)}
+                    {this.getListItems(category,selectedTask)}
                 </ListGroup>
 
-                {this.getCompletedListItem(category)}
+                {this.getCompletedListItem(category,selectedTask)}
 
 
             </Col>
