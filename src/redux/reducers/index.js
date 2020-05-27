@@ -1,6 +1,6 @@
 import {
   ADD_CATEGORY, SELECT_CATEGORY, ADD_NEW_TASK, SELECT_TASK,
-  MAKE_TASK_EDITABLE, IS_CATEGORY_EDITABLE, ADD_DESCRIPTION, MARK_US_COMPLETED
+  MAKE_TASK_EDITABLE, IS_CATEGORY_EDITABLE, ADD_DESCRIPTION, MARK_US_COMPLETED, DELETE_TASK
 } from "../constants/action-types";
 
 const initialState = {
@@ -122,9 +122,29 @@ function rootReducer(state = initialState, action) {
         ...state,
         categories: todolist,
       };
+
+      case DELETE_TASK :
+        var afterdeleted = [];
+        state.categories.forEach(function (item) {
+          var aftertask = [];
+          item.tasks.forEach(function (task) {
+            if (task.id !== action.payload.taskid) {
+              aftertask.push(task);
+            }
+          })
+        item.tasks = aftertask;
+        afterdeleted.push(item);            
+        });       
+      return {
+          ...state,
+          categories:afterdeleted,
+          showDescription:false
+        };   
+
     default:
       return state;
   }
 }
 
 export default rootReducer;
+

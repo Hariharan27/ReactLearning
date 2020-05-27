@@ -3,7 +3,7 @@ import { Col, ListGroup } from 'react-bootstrap';
 import './TaskList.css';
 import { connect } from "react-redux";
 import * as CategoryAction from '../../redux/actions/index'
-import FontAwesome from 'react-fontawesome';
+import logo from'../../delete_logo.png'
 
 
 class TaskList extends React.Component {
@@ -15,8 +15,14 @@ class TaskList extends React.Component {
         this.onTasknameChange = this.onTasknameChange.bind(this);
         this.onEnteredPressed = this.onEnteredPressed.bind(this);
         this.onMarkusCompleted = this.onMarkusCompleted.bind(this);
+        this.onImageDelete = this.onImageDelete.bind(this);
         this.state = { taskname: '' };
 
+    }
+
+    onImageDelete = (id) => {
+     console.log(id);
+     this.props.deletetask({taskid:id});
     }
 
     onMarkusCompleted = (e) => {
@@ -56,6 +62,9 @@ class TaskList extends React.Component {
                 <input type="checkbox" checked={item.isCompleted} name={item.id} onChange={this.onMarkusCompleted} />
                 <div className='rowchildTwo' >
                 <div  onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
+                </div>
+                <div onClick={()=>this.onImageDelete(item.id)}>
+                <img className="Logo" src={logo} alt="delete" />   
                 </div>
             </div>
         ))
@@ -112,7 +121,8 @@ function mapDispatchToProps(dispatch) {
         addNewTask: task => dispatch(CategoryAction.addNewTask(task)),
         selectTask: task => dispatch(CategoryAction.SelectTask(task)),
         MakeEditable: task => dispatch(CategoryAction.MakeEditable(task)),
-        markusCompeleted: task => dispatch(CategoryAction.markTaskusCompleted(task))
+        markusCompeleted: task => dispatch(CategoryAction.markTaskusCompleted(task)),
+        deletetask:task => dispatch(CategoryAction.deleteTask(task))
     };
 }
 

@@ -47,6 +47,7 @@
     width: 100%;
     padding: 8px;
     font-size: 14px;
+    margin-bottom: 8px;
     border-bottom: 2px solid #0078D7;
   }
   
@@ -54,5 +55,9 @@
     text-decoration: line-through;
     flex: 0.9;
     padding-left: 8px;
+}
 
+.Logo{
+  width: 20px;
+  height: 20px;
 }

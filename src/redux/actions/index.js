@@ -1,5 +1,5 @@
 import { ADD_CATEGORY,SELECT_CATEGORY,ADD_NEW_TASK,
-  SELECT_TASK,MAKE_TASK_EDITABLE,IS_CATEGORY_EDITABLE,ADD_DESCRIPTION,MARK_US_COMPLETED } from "../constants/action-types";
+  SELECT_TASK,MAKE_TASK_EDITABLE,IS_CATEGORY_EDITABLE,ADD_DESCRIPTION,MARK_US_COMPLETED,DELETE_TASK } from "../constants/action-types";
 
 export function addCategory(payload) {
   return { type: ADD_CATEGORY, payload };
@@ -32,4 +32,8 @@ export function addTaskDescription(payload){
 
 export function markTaskusCompleted(payload){
   return { type: MARK_US_COMPLETED, payload };
+}
+
+export function deleteTask(payload){
+  return { type: DELETE_TASK, payload };
 }
