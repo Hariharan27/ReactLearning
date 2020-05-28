@@ -1,13 +1,22 @@
 
 .SelectedSidebarText{
     color: #0078D7;
-    padding:10px;  
+    padding:10px; 
+    flex: 0.9;
+    font-size: 14px; 
 }
 .UnselectedSidebarText{
     color: black;
     padding:10px;
-    
+    flex: 0.9;
+    font-size: 14px;
 }
+
+.SelectedColor{
+  color: #0078D7;
+  font-size: 14px;
+}
+
 .Sidebar{
     background-color: #F4F4F4;
     padding: 10px;
@@ -16,6 +25,7 @@
 .TextNewCategory {
    margin: 10px; 
    font-size: 14px;
+   padding: 10px;
    color: #0078D7;
 }  
 
@@ -23,8 +33,15 @@
     border: 0;
     outline: 0;
     margin: 10px;
+    background-color: #FAFAFA;
     font-size: 14px;
     width: 100%;
     padding: 8px;
   }
+
+  .rowC {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
   

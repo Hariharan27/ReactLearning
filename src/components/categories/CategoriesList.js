@@ -18,11 +18,16 @@ class CategoriesList extends React.Component {
     getUIbasedonLength(item, index) {
         if (item.tasks.length > 0) {
             return (
-                <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'} key={index} onClick={e => this.selectCategory(item)}>{item.name} ({item.tasks.length})</div>
+                <div className='rowC' > 
+                <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'} key={index} onClick={e => this.selectCategory(item)}>{item.name}</div>
+                <div className = 'SelectedColor'>{item.tasks.length}</div>
+                </div>
             );
         } else {
             return (
+                <div className='rowC' > 
                 <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'} key={index} onClick={e => this.selectCategory(item)}>{item.name}</div>
+                </div>
             );
         }
     }
@@ -55,8 +60,8 @@ class CategoriesList extends React.Component {
         return (<Col xs={2} className='Sidebar' >
             {this.props.categories.map((item, index) => this.getUIbasedonLength(item, index))}
             {isCategoryEditable
-                ? <input placeholder={'Add a list'} type='text' value={categoryname} onKeyDown={this.onEnteredPressed} className='inputCategory' onChange={this.categoryChange} />
-                : <div className='TextNewCategory' onClick={this.makeEditable}>+ Add a list</div>}
+                ? <input placeholder={'+ New list'} type='text' value={categoryname} onKeyDown={this.onEnteredPressed} className='inputCategory' onChange={this.categoryChange} />
+                : <div className='TextNewCategory' onClick={this.makeEditable}>+ New list</div>}
         </Col>);
     }
 

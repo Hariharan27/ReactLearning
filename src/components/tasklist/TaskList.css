@@ -7,12 +7,20 @@
     border-bottom: 2px solid #F4F4F4;
 }
 
+.rowCBottomSelected {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 2px solid #0078D7;
+}
+
 .rowCSelected {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   padding: 8px;
-  background-color:#82CAFF  ;
+  background-color:#F4F6FF  ;
   border-bottom: 1px solid #F4F4F4;
 }
 
@@ -39,16 +47,15 @@
   .TextNewSize{
     font-size: 14px;
     color: #0078D7;
+    padding-left: 10px;
   }
 
   .input {
     border: 0;
     outline: 0;
-    width: 100%;
+    flex: 0.8;
     padding: 8px;
     font-size: 14px;
-    margin-bottom: 8px;
-    border-bottom: 2px solid #0078D7;
   }
   
   .crossed-line {

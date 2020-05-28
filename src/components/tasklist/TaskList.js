@@ -2,9 +2,11 @@ import React from 'react';
 import { Col, ListGroup } from 'react-bootstrap';
 import './TaskList.css';
 import { connect } from "react-redux";
-import * as CategoryAction from '../../redux/actions/index'
-import logo from'../../delete_logo.png'
-
+import * as CategoryAction from '../../redux/actions/index';
+import logo from'../../delete_logo.png';
+import addicon from '../../ic_add.png';
+import greycircle from '../../ic_circle_grey.png';
+import checkboxunfilled from '../../ic_circle_blue_unfilled.png'
 
 class TaskList extends React.Component {
 
@@ -16,6 +18,7 @@ class TaskList extends React.Component {
         this.onEnteredPressed = this.onEnteredPressed.bind(this);
         this.onMarkusCompleted = this.onMarkusCompleted.bind(this);
         this.onImageDelete = this.onImageDelete.bind(this);
+        this.makenonEditeable = this.makenonEditeable.bind(this);
         this.state = { taskname: '' };
 
     }
@@ -38,6 +41,11 @@ class TaskList extends React.Component {
     makeEditable() {
         this.setState({ taskname: '' })
         this.props.MakeEditable(true);
+    }
+
+    makenonEditeable(){
+        this.setState({ taskname: '' })
+        this.props.MakeEditable(false);
     }
 
     onTasknameChange = (event) => {
@@ -100,8 +108,14 @@ class TaskList extends React.Component {
                 <label className='TextSize'>{category[0].name}</label>
 
                 {isEditable
-                    ? <input placeholder={'Add a task'} type='text' value={taskname} onKeyDown={this.onEnteredPressed} className='input' onChange={this.onTasknameChange} />
-                    : <div className='TextNewSize' onClick={this.makeEditable}>+ Add a task</div>}
+                    ? <div className='rowCBottomSelected'>
+                        <img className='Logo' onClick={this.makenonEditeable} src={greycircle} alt='logo'/>  
+                        <input placeholder={'Add a task'} type='text' value={taskname} onKeyDown={this.onEnteredPressed} className='input' onChange={this.onTasknameChange} />
+                    </div>
+                    : <div className='rowC' onClick={this.makeEditable} >
+                      <img className='Logo' src={addicon} alt='logo'/>  
+                      <div className='TextNewSize' > Add a task</div>
+                      </div>}
 
                 <ListGroup variant="flush">
                     {this.getListItems(category,selectedTask)}
