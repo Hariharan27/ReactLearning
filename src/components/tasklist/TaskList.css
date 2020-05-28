@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     align-items: center;
     padding: 8px;
+    margin-top: 8px;
     border-bottom: 2px solid #F4F4F4;
 }
 
@@ -12,6 +13,7 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 8px;
+  margin-top: 10px;
   border-bottom: 2px solid #0078D7;
 }
 
@@ -20,6 +22,7 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 8px;
+  margin-top: 8px;
   background-color:#F4F6FF  ;
   border-bottom: 1px solid #F4F4F4;
 }
@@ -41,6 +44,8 @@
 
   .TextSize{
     font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: #0078D7;
   }
   

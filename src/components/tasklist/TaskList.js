@@ -6,7 +6,7 @@ import * as CategoryAction from '../../redux/actions/index';
 import logo from'../../delete_logo.png';
 import addicon from '../../ic_add.png';
 import greycircle from '../../ic_circle_grey.png';
-import checkboxunfilled from '../../ic_circle_blue_unfilled.png'
+import Customcheckbox from '../customcheckbox/Customcheckbox'
 
 class TaskList extends React.Component {
 
@@ -67,7 +67,7 @@ class TaskList extends React.Component {
             return task.isCompleted !== true;
         }).map((item, index) => (
             <div key={index} className={selectedTask!=null&&selectedTask.id === item.id?'rowCSelected':'rowC'}>
-                <input type="checkbox" checked={item.isCompleted} name={item.id} onChange={this.onMarkusCompleted} />
+                <Customcheckbox  checked={item.isCompleted} name={item.id} />
                 <div className='rowchildTwo' >
                 <div  onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
                 </div>
@@ -90,7 +90,7 @@ class TaskList extends React.Component {
                 <label className='TextNewCategory'> Completed </label>
                 {completedtask.map((item, index) => (
                     <div key={index} className={selectedTask!=null&&selectedTask.id === item.id?'rowCSelected':'rowC'}>
-                        <input type="checkbox" checked={item.isCompleted} name={item.id} onChange={this.onMarkusCompleted} />
+                        <Customcheckbox  checked={item.isCompleted} name={item.id} />
                         <div className='crossed-line' onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
                     </div>
                 ))}
@@ -109,6 +109,7 @@ class TaskList extends React.Component {
 
                 {isEditable
                     ? <div className='rowCBottomSelected'>
+                        <customcheckbox/>
                         <img className='Logo' onClick={this.makenonEditeable} src={greycircle} alt='logo'/>  
                         <input placeholder={'Add a task'} type='text' value={taskname} onKeyDown={this.onEnteredPressed} className='input' onChange={this.onTasknameChange} />
                     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Col } from 'react-bootstrap';
 import { connect } from "react-redux";
 import * as CategoryAction from '../../redux/actions/index'
+import Customcheckbox from '../customcheckbox/Customcheckbox'
 import './DescriptionComponent.css'
 
 class DescriptionComponent extends React.Component {
@@ -36,7 +37,7 @@ class DescriptionComponent extends React.Component {
                 {description != null && description.length > 0 ?
                     <div>
                         <div className='rowCA'>
-                            <input type="checkbox" checked={completed} name={selectedTask.id} onChange={this.onMarkusCompleted} />
+                            <Customcheckbox  checked={completed} name={selectedTask.id} />
                             <div className={completed?'descriptionlablewithcolorStrike':'descriptionlablewithcolor'}>{name}</div>
                         </div>
                         <div>
@@ -46,7 +47,7 @@ class DescriptionComponent extends React.Component {
                     </div>
                     : <div>
                          <div className='rowCA'>
-                            <input type="checkbox" checked={completed} name={selectedTask.id} onChange={this.onMarkusCompleted} />
+                            <Customcheckbox  checked={completed} name={selectedTask.id} />
                             <div className={completed?'descriptionlablewithcolorStrike':'descriptionlablewithcolor'}>{name}</div>
                         </div>
                         <div >

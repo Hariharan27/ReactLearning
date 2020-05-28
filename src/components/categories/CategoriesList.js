@@ -3,6 +3,7 @@ import { Col } from 'react-bootstrap';
 import * as CategoryAction from '../../redux/actions/index'
 import { connect } from "react-redux";
 import './CategoriesList.css'
+import addicon from '../../ic_add.png';
 
 class CategoriesList extends React.Component {
 
@@ -18,15 +19,15 @@ class CategoriesList extends React.Component {
     getUIbasedonLength(item, index) {
         if (item.tasks.length > 0) {
             return (
-                <div className='rowC' > 
-                <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'} key={index} onClick={e => this.selectCategory(item)}>{item.name}</div>
-                <div className = 'SelectedColor'>{item.tasks.length}</div>
+                <div className='rowC' >
+                    <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'} key={index} onClick={e => this.selectCategory(item)}>{item.name}</div>
+                    <div className={item.isSelected === true ? 'SelectedColor' : 'UnSelectedColor'}>{item.tasks.length}</div>
                 </div>
             );
         } else {
             return (
-                <div className='rowC' > 
-                <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'} key={index} onClick={e => this.selectCategory(item)}>{item.name}</div>
+                <div className='rowC' >
+                    <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'} key={index} onClick={e => this.selectCategory(item)}>{item.name}</div>
                 </div>
             );
         }
@@ -44,7 +45,7 @@ class CategoriesList extends React.Component {
         if (e.keyCode === 13) {
             const now = Date.now(); // Unix timestamp in milliseconds
             this.setState({ categoryname: '' })
-            this.props.addCategory({id:now, name: this.state.categoryname, isSelected: false, tasks: [] });
+            this.props.addCategory({ id: now, name: this.state.categoryname, isSelected: false, tasks: [] });
 
         }
     }
@@ -61,7 +62,7 @@ class CategoriesList extends React.Component {
             {this.props.categories.map((item, index) => this.getUIbasedonLength(item, index))}
             {isCategoryEditable
                 ? <input placeholder={'+ New list'} type='text' value={categoryname} onKeyDown={this.onEnteredPressed} className='inputCategory' onChange={this.categoryChange} />
-                : <div className='TextNewCategory' onClick={this.makeEditable}>+ New list</div>}
+                : <div className='TextNewCategory' onClick={this.makeEditable}> + New list</div>}
         </Col>);
     }
 
