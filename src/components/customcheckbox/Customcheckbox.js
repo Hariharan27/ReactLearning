@@ -4,6 +4,8 @@ import checkboxfilled from '../../ic_checked.png'
 import * as CategoryAction from '../../redux/actions/index';
 import { connect } from "react-redux";
 import './Customcheckbox.css';
+import Tooltip from '@material-ui/core/Tooltip';
+import CustomTooltip from '../tooltip/CustomTooltip'
 
 class Customcheckbox extends React.Component{
 
@@ -20,7 +22,9 @@ class Customcheckbox extends React.Component{
     render(){
         const { checked, name} = this.props;
         return(
-              <img className='checkboxLogo' onClick={()=>this.onMarkusCompleted(name,checked)} src={checked?checkboxfilled:checkboxunfilled}/>
+            <CustomTooltip child={
+            <img className='checkboxLogo' onClick={()=>this.onMarkusCompleted(name,checked)} src={checked?checkboxfilled:checkboxunfilled}/>
+            }></CustomTooltip>
         );
     }
 
