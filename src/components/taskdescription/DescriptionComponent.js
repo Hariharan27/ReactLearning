@@ -1,5 +1,4 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
 import { connect } from "react-redux";
 import * as CategoryAction from '../../redux/actions/index'
 import Customcheckbox from '../customcheckbox/Customcheckbox'
@@ -33,7 +32,7 @@ class DescriptionComponent extends React.Component {
         const { description, name,completed,selectedTask } = this.props;
         const { desc } = this.state;
         return (
-            <Col className='Sidebar' xs={2}>
+            <div className='Sidebar' >
                 {description != null && description.length > 0 ?
                     <div>
                         <div className='rowCA'>
@@ -56,7 +55,7 @@ class DescriptionComponent extends React.Component {
                         </div>
                     </div>
                 }
-            </Col>
+            </div>
         );
     }
 

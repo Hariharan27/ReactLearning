@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import store from '../../redux/store/index'
 import Dashboard from '../dashboard/Dashboard'
 import Menu from '../../components/menu/Menu'
+import Drawer from '../../components/drawer/Drawer'
 
 function App() {
   return (

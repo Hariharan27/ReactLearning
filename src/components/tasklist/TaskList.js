@@ -1,11 +1,11 @@
 import React from 'react';
-import { Col, ListGroup } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import './TaskList.css';
 import { connect } from "react-redux";
 import * as CategoryAction from '../../redux/actions/index';
-import logo from'../../delete_logo.png';
-import addicon from '../../ic_add.png';
-import greycircle from '../../ic_circle_grey.png';
+import logo from'../../assets/delete_logo.png';
+import addicon from '../../assets/ic_add.png';
+import greycircle from '../../assets/ic_circle_grey.png';
 import Customcheckbox from '../customcheckbox/Customcheckbox'
 
 class TaskList extends React.Component {
@@ -100,10 +100,10 @@ class TaskList extends React.Component {
     }
 
     render() {
-        const { isEditable, category, weight, selectedTask } = this.props;
+        const { isEditable, category, selectedTask } = this.props;
         const { taskname } = this.state;
         return (
-            <Col xs={weight} className='TaskContainer' >
+            <div className='TaskContainer' >
 
                 <label className='TextSize'>{category[0].name}</label>
 
@@ -125,7 +125,7 @@ class TaskList extends React.Component {
                 {this.getCompletedListItem(category,selectedTask)}
 
 
-            </Col>
+            </div>
         );
     }
 

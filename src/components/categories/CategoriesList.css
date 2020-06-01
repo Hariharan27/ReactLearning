@@ -23,6 +23,8 @@
 
 .Sidebar{
     background-color: #F4F4F4;
+    flex: 0.2;
+    height: 100%;
   }
 
 .TextNewCategory {
@@ -48,8 +50,13 @@
     align-items: center;
 }
 
+
 .categorylogo{
   width: 10px;
   height: 10px;
+}
+
+.navigaitonlogo {
+  margin: 10px;
 }
   

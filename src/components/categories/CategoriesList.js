@@ -1,9 +1,8 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
 import * as CategoryAction from '../../redux/actions/index'
 import { connect } from "react-redux";
 import './CategoriesList.css'
-import addicon from '../../ic_add.png';
+import navigation from '../../assets/ic_navigation_menu.png';
 
 class CategoriesList extends React.Component {
 
@@ -58,12 +57,13 @@ class CategoriesList extends React.Component {
     render() {
         const { categoryname } = this.state;
         const { isCategoryEditable } = this.props;
-        return (<Col xs={2} className='Sidebar' >
+        return (<div className='Sidebar' >
+            <img className='navigaitonlogo' src={navigation} alt="navigation" />
             {this.props.categories.map((item, index) => this.getUIbasedonLength(item, index))}
             {isCategoryEditable
                 ? <input placeholder={'+ New list'} type='text' value={categoryname} onKeyDown={this.onEnteredPressed} className='inputCategory' onChange={this.categoryChange} />
                 : <div className='TextNewCategory' onClick={this.makeEditable}> + New list</div>}
-        </Col>);
+        </div>);
     }
 
 }

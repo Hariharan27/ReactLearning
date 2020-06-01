@@ -1,6 +1,6 @@
 import React from 'react';
-import checkboxunfilled from '../../ic_circle_blue_unfilled.png'
-import checkboxfilled from '../../ic_checked.png'
+import checkboxunfilled from '../../assets/ic_circle_blue_unfilled.png'
+import checkboxfilled from '../../assets/ic_checked.png'
 import * as CategoryAction from '../../redux/actions/index';
 import { connect } from "react-redux";
 import './Customcheckbox.css';
