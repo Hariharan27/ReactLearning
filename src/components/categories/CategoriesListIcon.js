@@ -1,11 +1,12 @@
 import React from 'react';
 import * as CategoryAction from '../../redux/actions/index'
 import { connect } from "react-redux";
-import './CategoriesList.css'
+import './CategoriesList.css';
 import navigation from '../../assets/ic_navigation_menu.png';
-import itemlist from '../../assets/ic_item_list.png'
+import itemlist from '../../assets/ic_item_list.png';
+import addIcon from '../../assets/ic_add.png';
 
-class CategoriesList extends React.Component {
+class CategoriesListIcon extends React.Component {
 
     constructor(props) {
         super(props)
@@ -20,26 +21,17 @@ class CategoriesList extends React.Component {
     getUIbasedonLength(item, index) {
         if (item.tasks.length > 0) {
             return (
-                <div key={index} className='rowC'  onClick={e => this.selectCategory(item)}>
-                    <img alt={item.name} src={item.icon} />
-                    <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'} >{item.name}</div>
-                    <div className={item.isSelected === true ? 'SelectedColor' : 'UnSelectedColor'}>{item.tasks.length}</div>
+                <div key={index} className={item.isSelected?'rowCSelected':'rowC'} >
+                  <img alt={item.name} onClick={e => this.selectCategory(item)} src={item.icon}/>
                 </div>
             );
         } else {
             return (
-                <div key={index} className='rowC' onClick={e => this.selectCategory(item)}>
-                    <img alt={item.name}  src={item.icon} />
-                    <div className={item.isSelected === true ? 'SelectedSidebarText' : 'UnselectedSidebarText'}  >{item.name}</div>
+                <div key={index} className={item.isSelected?'rowCSelected':'rowC'} >
+                    <img  alt={item.name} onClick={e => this.selectCategory(item)} src={item.icon}/>
                 </div>
             );
         }
-    }
-
-    onNavigationClick = () => {
-        var toggle = !this.props.showFullCategory
-        console.log(toggle);
-        this.props.toggleSideBar(toggle);
     }
 
     categoryChange = (event) => {
@@ -54,13 +46,21 @@ class CategoriesList extends React.Component {
         if (e.keyCode === 13) {
             const now = Date.now(); // Unix timestamp in milliseconds
             this.setState({ categoryname: '' })
-            this.props.addCategory({ id: now, name: this.state.categoryname, isSelected: false, tasks: [],icon:itemlist });
+            this.props.addCategory({ id: now, name: this.state.categoryname, isSelected: false, tasks: [] });
 
         }
     }
 
+    onNavigationClick = () => {
+        var toggle = !this.props.showFullCategory
+        console.log(toggle);
+        this.props.toggleSideBar(toggle);
+        
+    }
+
     makeEditable = () => {
         this.props.makeCategory(true);
+        this.onNavigationClick();
     }
 
 
@@ -68,13 +68,14 @@ class CategoriesList extends React.Component {
         const { categoryname } = this.state;
         const { isCategoryEditable } = this.props;
         return (<div className='Sidebar' >
-            <img className='navigaitonlogo' src={navigation} alt="navigation" onClick={this.onNavigationClick} />
+            <img className='navigaitonlogo' src={navigation} alt="navigation"  onClick={this.onNavigationClick}/>
             {this.props.categories.map((item, index) => this.getUIbasedonLength(item, index))}
             {isCategoryEditable
                 ? <input placeholder={'+ New list'} type='text' value={categoryname} onKeyDown={this.onEnteredPressed} className='inputCategory' onChange={this.categoryChange} />
-                : <div className='TextNewCategory' onClick={this.makeEditable}> + New list</div>}
+            : <img className='navigaitonlogo' src={addIcon} alt='Newlist' onClick={this.makeEditable} /> }
         </div>);
     }
+
 
 }
 
@@ -93,4 +94,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoriesListIcon);

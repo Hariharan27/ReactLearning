@@ -2,43 +2,87 @@ import React from 'react';
 import { connect } from "react-redux";
 import './Dashboard.css'
 import CategoriesList from '../../components/categories/CategoriesList';
+import CategoriesListIcon from '../../components/categories/CategoriesListIcon'
 import TaskList from '../../components/tasklist/TaskList';
 import DescriptionComponent from '../../components/taskdescription/DescriptionComponent';
 
 class Dashboard extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { showFullCategory: true };
+    }
+
     render() {
 
-        const { selected, showDescription, categories, isCategoryEditable, selectedTask } = this.props;
-     if(showDescription)
-        return (
-            
-            <div className='fill-window'>
-                
-                <CategoriesList categories={categories} isCategoryEditable={isCategoryEditable} />
-          
-                <div style={{flex:'0.6'}}>
-                <TaskList selectedTask={selectedTask} category={selected} />
-                </div>
+        const { selected, showDescription, categories, isCategoryEditable, selectedTask,showFullCategory } = this.props;
+        if (showDescription)
+            return (
 
-                <div style={{flex:'0.2'}}>
-                <DescriptionComponent completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
-                </div>
+                <div className='fill-window'>
 
-            </div>
-        );
+                    {showFullCategory
+                        ?
+                        <div style={{ flex: 0.2 }}>
+                            <CategoriesList categories={categories} isCategoryEditable={isCategoryEditable} />
+                        </div>
+                        :
+                        <div style={{ flex: '0.01' }}>
+                            <CategoriesListIcon categories={categories} isCategoryEditable={isCategoryEditable} />
+                        </div>
+
+                    }
+
+                    {showFullCategory
+                        ?
+                        <div style={{ flex: '0.5' }}>
+                            <TaskList showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                        </div>
+                        :
+                        <div style={{ flex: '0.79' }}>
+                            <TaskList showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                        </div>
+
+                    }
+
+
+                    <div style={{ flex: '0.3' }}>
+                        <DescriptionComponent completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
+                    </div>
+
+                </div>
+            );
         else
-        return (
-            
-            <div className='fill-window' >
-                
-                <CategoriesList categories={categories} isCategoryEditable={isCategoryEditable} />
-                        
-                <div style={{flex:'0.8'}}>
-                <TaskList selectedTask={selectedTask} category={selected} />
+            return (
+
+                <div className='fill-window' >
+
+
+                    {showFullCategory
+                        ?
+                        <div style={{ flex: 0.2 }}>
+                            <CategoriesList categories={categories} isCategoryEditable={isCategoryEditable} />
+                        </div>
+                        :
+                        <div style={{ flex: '0.01' }}>
+                            <CategoriesListIcon categories={categories} isCategoryEditable={isCategoryEditable} />
+                        </div>
+
+                    }
+
+                    {showFullCategory
+                        ?
+                        <div style={{ flex: '0.8' }}>
+                            <TaskList showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                        </div>
+                        :
+                        <div style={{ flex: '0.99' }}>
+                            <TaskList showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                        </div>
+
+                    }
                 </div>
-            </div>
-        );
+            );
     }
 
 }
@@ -54,6 +98,7 @@ const mapStateToProps = state => {
         isCategoryEditable: state.isCategoryEditable,
         selected: selectedCategory,
         selectedTask: state.selectedTask,
+        showFullCategory:state.showFullCategory
     };
 };
 

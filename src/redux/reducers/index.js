@@ -1,16 +1,21 @@
 import {
   ADD_CATEGORY, SELECT_CATEGORY, ADD_NEW_TASK, SELECT_TASK,
-  MAKE_TASK_EDITABLE, IS_CATEGORY_EDITABLE, ADD_DESCRIPTION, MARK_US_COMPLETED, DELETE_TASK
+  MAKE_TASK_EDITABLE, IS_CATEGORY_EDITABLE, ADD_DESCRIPTION, MARK_US_COMPLETED, DELETE_TASK, TOGGLE_SIDEBAR
 } from "../constants/action-types";
+import myday from '../../assets/ic_sun.png';
+import important from '../../assets/ic_start.png';
+import calender from '../../assets/ic_calendar.png';
+import home from '../../assets/ic_home.png';
 
 const initialState = {
-  categories: [{ id: 1, name: "My Day", isSelected: true, tasks: [], isEditable: false, },
-  { id: 2, name: "Important", isSelected: false, tasks: [], isEditable: false, },
-  { id: 3, name: "Planned", isSelected: false, tasks: [], isEditable: false, },
-  { id: 4, name: "Tasks", isSelected: false, tasks: [], isEditable: false, }],
+  categories: [{ id: 1, name: "My Day", isSelected: true, tasks: [], isEditable: false,icon:myday },
+  { id: 2, name: "Important", isSelected: false, tasks: [], isEditable: false,icon:important },
+  { id: 3, name: "Planned", isSelected: false, tasks: [], isEditable: false,icon:calender },
+  { id: 4, name: "Tasks", isSelected: false, tasks: [], isEditable: false,icon:home }],
   showDescription: false,
   isCategoryEditable: false,
-  selectedTask: null
+  selectedTask: null,
+  showFullCategory:true
 };
 
 function rootReducer(state = initialState, action) {
@@ -140,6 +145,14 @@ function rootReducer(state = initialState, action) {
           categories:afterdeleted,
           showDescription:false
         };   
+
+        case TOGGLE_SIDEBAR :       
+        return {
+            ...state,
+            showFullCategory:action.payload,
+            isCategoryEditable:false
+          };   
+  
 
     default:
       return state;
