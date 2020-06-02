@@ -14,15 +14,19 @@ class Customcheckbox extends React.Component{
     }
 
 
-    onMarkusCompleted = (name,checked) => {
-        this.props.markusCompeleted({ selectedtask: name, selection: !checked })
+    onMarkusCompleted = (name,checked,step,taskid) => {
+        if(step !=null && step){
+            this.props.markStepCompleted({selectedtask:taskid,stepid:name,completed:!checked});
+        }else{
+            this.props.markusCompeleted({ selectedtask: name, selection: !checked });
+        }
     }
 
     render(){
-        const { checked, name} = this.props;
+        const { checked, name,step,taskid} = this.props;
         return(
             <CustomTooltip child={
-            <img alt={name} className='checkboxLogo' onClick={()=>this.onMarkusCompleted(name,checked)} src={checked?checkboxfilled:checkboxunfilled}/>
+            <img alt={name} className='checkboxLogo' onClick={()=>this.onMarkusCompleted(name,checked,step,taskid)} src={checked?checkboxfilled:checkboxunfilled}/>
             }></CustomTooltip>
         );
     }
@@ -31,7 +35,8 @@ class Customcheckbox extends React.Component{
 
 function mapDispatchToProps(dispatch) {
     return {
-        markusCompeleted: task => dispatch(CategoryAction.markTaskusCompleted(task))
+        markusCompeleted: task => dispatch(CategoryAction.markTaskusCompleted(task)),
+        markStepCompleted:task => dispatch(CategoryAction.MarkStepCompleted(task))
     };
 }
 

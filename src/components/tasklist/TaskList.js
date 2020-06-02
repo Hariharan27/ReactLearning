@@ -3,10 +3,11 @@ import { ListGroup } from 'react-bootstrap';
 import './TaskList.css';
 import { connect } from "react-redux";
 import * as CategoryAction from '../../redux/actions/index';
-import logo from'../../assets/delete_logo.png';
 import addicon from '../../assets/ic_add.png';
 import greycircle from '../../assets/ic_circle_grey.png';
-import Customcheckbox from '../customcheckbox/Customcheckbox'
+import Customcheckbox from '../customcheckbox/Customcheckbox';
+import SortMenu from '../optionmenu/SortMenu';
+import MenuContext from '../ContextMenu/MenuContext';
 
 class TaskList extends React.Component {
 
@@ -17,24 +18,13 @@ class TaskList extends React.Component {
         this.makeEditable = this.makeEditable.bind(this);
         this.onTasknameChange = this.onTasknameChange.bind(this);
         this.onEnteredPressed = this.onEnteredPressed.bind(this);
-        this.onMarkusCompleted = this.onMarkusCompleted.bind(this);
-        this.onImageDelete = this.onImageDelete.bind(this);
         this.makenonEditeable = this.makenonEditeable.bind(this);
         this.state = { taskname: '' };
 
     }
 
-    onImageDelete = (id) => {
-     console.log(id);
-     this.props.deletetask({taskid:id});
-    }
 
-    onMarkusCompleted = (e) => {
-        console.log(e.target.checked);
-        this.props.markusCompeleted({ selectedtask: e.target.name, selection: e.target.checked })
-    }
-
-    onTaskClick(id) {
+    onTaskClick(id, e) {
         this.setState({ taskname: '' })
         this.props.selectTask({ showDescription: true, selectedtask: id });
     }
@@ -44,7 +34,7 @@ class TaskList extends React.Component {
         this.props.MakeEditable(true);
     }
 
-    makenonEditeable(){
+    makenonEditeable() {
         this.setState({ taskname: '' })
         this.props.MakeEditable(false);
     }
@@ -58,28 +48,33 @@ class TaskList extends React.Component {
         if (e.keyCode === 13) {
             this.setState({ taskname: '' })
             const now = Date.now(); // Unix timestamp in milliseconds
-            this.props.addNewTask({ id:now,name: this.state.taskname, description: '', isSelected: false, isCompleted: false });
+            this.props.addNewTask({ id: now, name: this.state.taskname, description: '', isSelected: false, isCompleted: false, steps: [] });
         }
     }
 
-
-    getListItems(category,selectedTask) {
+    getListItems(category, selectedTask, steps) {
         return category[0].tasks.filter(function (task) {
             return task.isCompleted !== true;
         }).map((item, index) => (
-            <div key={index} className={selectedTask!=null&&selectedTask.id === item.id?'rowCSelected':'rowC'}>
-                <Customcheckbox  checked={item.isCompleted} name={item.id} />
+            <div key={index} className={selectedTask != null && selectedTask.id === item.id ? 'rowCSelected' : 'rowC'}>
+                <Customcheckbox checked={item.isCompleted} name={item.id} />
                 <div className='rowchildTwo' >
-                <div  onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
-                </div>
-                <div onClick={()=>this.onImageDelete(item.id)}>
-                <img className="Logo" src={logo} alt="delete" />   
+                    <MenuContext checked={item.isCompleted} id={item.id} child={
+                        <div onClick={(e) => this.onTaskClick(item.id, e)}>
+                            <div>{item.name}</div>
+                            {steps != null && steps.length > 0 ?
+                                <div className='stepsinfo'>{steps.filter(function(step){
+                                    return step.isCompleted
+                                }).length} of {steps.length}</div> :
+                                null
+                            }
+                        </div>} />
                 </div>
             </div>
         ))
     }
 
-    getCompletedListItem(category,selectedTask) {
+    getCompletedListItem(category, selectedTask, steps) {
 
         const completedtask = category[0].tasks.filter(function (task) {
             return task.isCompleted;
@@ -90,9 +85,13 @@ class TaskList extends React.Component {
             <ListGroup variant="flush">
                 <label className='TextNewCategory'> Completed </label>
                 {completedtask.map((item, index) => (
-                    <div key={index} className={selectedTask!=null&&selectedTask.id === item.id?'rowCSelected':'rowC'}>
-                        <Customcheckbox  checked={item.isCompleted} name={item.id} />
-                        <div className='crossed-line' onClick={() => this.onTaskClick(item.id)}>{item.name}</div>
+                    <div key={index} className={selectedTask != null && selectedTask.id === item.id ? 'rowCSelected' : 'rowC'}>
+                        <Customcheckbox checked={item.isCompleted} name={item.id} />
+                        <div className='taskdiv'>
+                            <MenuContext checked={item.isCompleted} id={item.id} child={
+                                <div className='crossed-line' onClick={(e) => this.onTaskClick(item.id, e)}>{item.name}</div>
+                            } />
+                        </div>
                     </div>
                 ))}
             </ListGroup>
@@ -101,29 +100,31 @@ class TaskList extends React.Component {
     }
 
     render() {
-        const { isEditable, category, selectedTask } = this.props;
+        const { isEditable, category, selectedTask, steps } = this.props;
         const { taskname } = this.state;
         return (
             <div className='TaskContainer' >
 
-                <label className='TextSize'>{category[0].name}</label>
+                <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
+                    <SortMenu />
+                    <label className='Taskname' >{category[0].name}</label>
+                </div>
 
                 {isEditable
                     ? <div className='rowCBottomSelected'>
-                        <customcheckbox/>
-                        <img className='Logo' onClick={this.makenonEditeable} src={greycircle} alt='logo'/>  
+                        <img className='Logo' onClick={this.makenonEditeable} src={greycircle} alt='logo' />
                         <input placeholder={'Add a task'} type='text' value={taskname} onKeyDown={this.onEnteredPressed} className='input' onChange={this.onTasknameChange} />
                     </div>
                     : <div className='rowC' onClick={this.makeEditable} >
-                      <img className='Logo' src={addicon} alt='logo'/>  
-                      <div className='TextNewSize' > Add a task</div>
-                      </div>}
+                        <img className='Logo' src={addicon} alt='logo' />
+                        <div className='TextNewSize' > Add a task</div>
+                    </div>}
 
                 <ListGroup variant="flush">
-                    {this.getListItems(category,selectedTask)}
+                    {this.getListItems(category, selectedTask, steps)}
                 </ListGroup>
 
-                {this.getCompletedListItem(category,selectedTask)}
+                {this.getCompletedListItem(category, selectedTask, steps)}
 
 
             </div>
@@ -136,9 +137,7 @@ function mapDispatchToProps(dispatch) {
     return {
         addNewTask: task => dispatch(CategoryAction.addNewTask(task)),
         selectTask: task => dispatch(CategoryAction.SelectTask(task)),
-        MakeEditable: task => dispatch(CategoryAction.MakeEditable(task)),
-        markusCompeleted: task => dispatch(CategoryAction.markTaskusCompleted(task)),
-        deletetask:task => dispatch(CategoryAction.deleteTask(task))
+        MakeEditable: task => dispatch(CategoryAction.MakeEditable(task))
     };
 }
 

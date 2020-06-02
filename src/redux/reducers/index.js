@@ -1,7 +1,10 @@
 import {
   ADD_CATEGORY, SELECT_CATEGORY, ADD_NEW_TASK, SELECT_TASK,
-  MAKE_TASK_EDITABLE, IS_CATEGORY_EDITABLE, ADD_DESCRIPTION, MARK_US_COMPLETED, DELETE_TASK, TOGGLE_SIDEBAR
-} from "../constants/action-types";
+  MAKE_TASK_EDITABLE, IS_CATEGORY_EDITABLE,
+   ADD_DESCRIPTION, MARK_US_COMPLETED, 
+   DELETE_TASK, TOGGLE_SIDEBAR,
+  SORT_ASCENDING,SORT_DECENDING,
+  ADD_STEP,DELETE_STEP,MARKSTEP_COMPLETED} from "../constants/action-types";
 import myday from '../../assets/ic_sun.png';
 import important from '../../assets/ic_start.png';
 import calender from '../../assets/ic_calendar.png';
@@ -15,7 +18,7 @@ const initialState = {
   showDescription: false,
   isCategoryEditable: false,
   selectedTask: null,
-  showFullCategory:true
+  showFullCategory:true,
 };
 
 function rootReducer(state = initialState, action) {
@@ -152,7 +155,119 @@ function rootReducer(state = initialState, action) {
             showFullCategory:action.payload,
             isCategoryEditable:false
           };   
+
+          case SORT_ASCENDING :       
+        
+           var list  = state.categories;
+
+           var sortedlist = list.filter(function (item) {
+            return item.isSelected;
+          })[0].tasks.sort((a, b) => (a.name > b.name) ? 1 : -1);
+
+          console.log(sortedlist);
+          
+          return Object.assign({}, state, {
+            categories: state.categories,
+            isCategoryEditable:false,
+            isEditable:false
+          });
+
+          case SORT_DECENDING :
+   
+            var dlist  = state.categories;
+
+            var dsortedlist = dlist.filter(function (item) {
+             return item.isSelected;
+           })[0].tasks.sort((a, b) => (a.name < b.name) ? 1 : -1);
+ 
+           console.log(dsortedlist);
+           
+           return Object.assign({}, state, {
+             categories: state.categories,
+             isCategoryEditable:false,
+             isEditable:false
+           });
+
+       case ADD_STEP:  
+       var stepslist = [];
+       var steptask = {};
+       state.categories.forEach(function (item) {
+         if (item.isSelected) {
+           item.tasks.forEach(function (task) {
+             if (task.id === action.payload.selectedtask) {
+               task.steps.push(action.payload.step);
+               steptask = task;
+              }
+           })
+         }
+         stepslist.push(item);
+       })
+       return {
+         ...state,
+         categories: stepslist,
+         selectedTask: steptask
+ 
+       };
+
+       case DELETE_STEP:  
+       var stepslist = [];
+       var steptask = {};
+       state.categories.forEach(function (item) {
+         if (item.isSelected) {
+           item.tasks.forEach(function (task) {
+            var asteps = [];
+            if (task.id === action.payload.selectedtask) {
+               task.steps.forEach(function(step){
+                    if(step.id != action.payload.stepid){
+                      asteps.push(step);
+                    }  
+               })
+               task.steps = asteps
+               steptask = task;
+              }
+           })
+         }
+         stepslist.push(item);
+       })
+       return {
+         ...state,
+         categories: stepslist,
+         selectedTask: steptask
+ 
+       };
+
+       case MARKSTEP_COMPLETED :
+       console.log('reducer');
+       var stelist = [];
+       var stetask = {};
+       state.categories.forEach(function (item) {
+         if (item.isSelected) {
+           item.tasks.forEach(function (task) {
+            var atep = [];
+            if (task.id === action.payload.selectedtask) {
+              console.log(task.steps);
+               task.steps.forEach(function(step){
+                console.log(action.payload.stepid+"/"+step.id+"/"+step.id === action.payload.stepid);    
+                if(step.id === action.payload.stepid){
+                         step.isCompleted = action.payload.completed;
+                } 
+                atep.push(step); 
+               })
+               task.steps = atep
+               stetask = task;
+              }
+           })
+         }
+         stelist.push(item);
+       })
+       return {
+         ...state,
+         categories: stelist,
+         selectedTask: stetask
+ 
+       };
   
+ 
 
     default:
       return state;

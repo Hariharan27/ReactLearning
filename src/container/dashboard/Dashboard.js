@@ -36,22 +36,22 @@ class Dashboard extends React.Component {
                     {showFullCategory
                         ?
                         <div style={{ flex: '0.5' }}>
-                            <TaskList showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
                         <div style={{ flex: '0.79' }}>
-                            <TaskList showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
 
                     }
 
 
                     <div style={{ flex: '0.3' }}>
-                        <DescriptionComponent completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
+                        <DescriptionComponent steps={selectedTask.steps} completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
                     </div>
 
                 </div>
-            );
+            ); 
         else
             return (
 
@@ -73,11 +73,11 @@ class Dashboard extends React.Component {
                     {showFullCategory
                         ?
                         <div style={{ flex: '0.8' }}>
-                            <TaskList showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
                         <div style={{ flex: '0.99' }}>
-                            <TaskList showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
 
                     }

@@ -1,0 +1,14 @@
+
+.Sort{
+    font-size: 18px;
+    padding-left: 5px;
+    color: #0078D7;
+  }
+
+  .sortdiv{
+    justify-content: flex-end;
+    flex: 0.1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  
+  }

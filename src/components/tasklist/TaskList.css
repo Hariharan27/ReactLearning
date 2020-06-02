@@ -43,12 +43,29 @@
     height: 100%;
   }
 
-  .TextSize{
+  .Taskname{
     font-size: 18px;
     margin-top: 10px;
+    margin-left: 4px;
     margin-bottom: 10px;
     color: #0078D7;
+    flex: 0.9;
   }
+
+  .Sort{
+    font-size: 18px;
+    padding-left: 5px;
+    color: #0078D7;
+  }
+
+  .sortdiv{
+    justify-content: flex-end;
+    flex: 0.1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  
+  }
+
   
   .TextNewSize{
     font-size: 14px;
@@ -66,11 +83,18 @@
   
   .crossed-line {
     text-decoration: line-through;
-    flex: 0.9;
     padding-left: 8px;
+}
+
+.taskdiv{
+flex: 0.9;
 }
 
 .Logo{
   width: 20px;
   height: 20px;
+}
+
+.stepsinfo{
+  font-size: 12px;
 }
