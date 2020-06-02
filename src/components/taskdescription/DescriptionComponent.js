@@ -8,6 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import addicon from '../../assets/ic_add.png';
 import greycircle from '../../assets/ic_circle_grey.png';
 import close from '../../assets/ic_close.png';
+import calender from '../../assets/ic_calendar.png';
 
 
 
@@ -27,7 +28,7 @@ class DescriptionComponent extends React.Component {
     }
 
     deleteStep = (id) => {
-        this.props.DeleteStep({stepid:id,selectedtask: this.props.selectedTask.id });
+        this.props.DeleteStep({ stepid: id, selectedtask: this.props.selectedTask.id });
     }
 
     onAddstepClicked = (isedit) => {
@@ -35,7 +36,7 @@ class DescriptionComponent extends React.Component {
     }
 
     onStepChange = (event) => {
-        this.setState({taskname:event.target.value});
+        this.setState({ taskname: event.target.value });
     }
 
     onTasknameChange = (event) => {
@@ -53,7 +54,7 @@ class DescriptionComponent extends React.Component {
             <div className='stepholder' key={index}>
                 {/* <img alt='greycircle' onClick={() => this.onAddstepClicked(false)} className='addstepimage' src={greycircle} /> */}
                 <div className='addstepimage'>
-                <Customcheckbox checked={item.isCompleted} name={item.id} step={true} taskid={this.props.selectedTask.id} />
+                    <Customcheckbox checked={item.isCompleted} name={item.id} step={true} taskid={this.props.selectedTask.id} />
                 </div>
                 <div className='stepname'>{item.name}</div>
                 <img alt='delete' onClick={() => this.deleteStep(item.id)} className='addstepimage' src={close} />
@@ -65,7 +66,7 @@ class DescriptionComponent extends React.Component {
         if (e.keyCode === 13) {
             this.setState({ taskname: '' })
             const now = Date.now(); // Unix timestamp in milliseconds
-            this.props.AddStep({ selectedtask: this.props.selectedTask.id, step: { id: now, name: this.state.taskname,isCompleted:false } });
+            this.props.AddStep({ selectedtask: this.props.selectedTask.id, step: { id: now, name: this.state.taskname, isCompleted: false } });
         }
     }
 
@@ -75,7 +76,7 @@ class DescriptionComponent extends React.Component {
 
 
     render() {
-        const { description, name, completed, selectedTask,steps } = this.props;
+        const { description, name, completed, selectedTask, steps } = this.props;
         const { iseditable, taskname } = this.state;
         return (
             <div className='Sidebar' >
@@ -89,23 +90,30 @@ class DescriptionComponent extends React.Component {
                         </div>
 
                         {this.getListStpItem(steps)}
-
                         {iseditable
                             ?
                             <div className='divmarginwithflexSelected'>
                                 <img alt='greycircle' onClick={() => this.onAddstepClicked(false)} className='addstepimage' src={greycircle} />
-                                <input placeholder={ steps.length >0 ?'Next step' :'Add step'} className='inputstep' type='text' value={taskname} onChange={this.onStepChange} onKeyDown={this.onEnteredPressed} />
+                                <input placeholder={steps.length > 0 ? 'Next step' : 'Add step'} className='inputstep' type='text' value={taskname} onChange={this.onStepChange} onKeyDown={this.onEnteredPressed} />
                             </div>
                             : <div onClick={() => this.onAddstepClicked(true)} className='divmarginwithflex'>
                                 <img alt='addicon' className='addstepimage' src={addicon} />
-                                 {steps.length >0 ? 
-                                     <div className='steplablewithcolor'>Next step</div>
-                                     :
-                                     <div className='steplablewithcolor'>Add step</div>
-                                     }
+                                {steps.length > 0 ?
+                                    <div className='steplablewithcolor'>Next step</div>
+                                    :
+                                    <div className='steplablewithcolor'>Add step</div>
+                                }
                             </div>}
 
                     </Card>
+
+                    <Card className='divmargintop'>
+                        <div className='divmarginwithflexSelected'>
+                            <img alt='greycircle' className='addstepimage' src={calender} />
+                            <div className='marginten' >Add due date</div>
+                        </div>
+                    </Card>
+
                     <Card className='divmargintop'>
                         <TextareaAutosize placeholder={'Add note'} type='text' value={description} className='inputDescription' onChange={this.onTasknameChange} />
                     </Card>
@@ -122,7 +130,7 @@ function mapDispatchToProps(dispatch) {
         addTaskDescription: task => dispatch(CategoryAction.addTaskDescription(task)),
         markusCompeleted: task => dispatch(CategoryAction.markTaskusCompleted(task)),
         AddStep: task => dispatch(CategoryAction.AddStep(task)),
-        DeleteStep:task => dispatch(CategoryAction.DeleteStep(task))
+        DeleteStep: task => dispatch(CategoryAction.DeleteStep(task))
     };
 }
 

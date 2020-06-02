@@ -99,6 +99,11 @@
   flex: 0.2;
 }
 
+.marginten{
+  margin: 5px;
+  font-size: 14;
+}
+
 .addstepimagewithflex{
   flex: 0.2;
   width: 16px;

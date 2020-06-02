@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
 
                     {showFullCategory
                         ?
-                        <div style={{ flex: '0.5' }}>
+                        <div style={{ flex: '0.6' }}>
                             <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
@@ -46,7 +46,7 @@ class Dashboard extends React.Component {
                     }
 
 
-                    <div style={{ flex: '0.3' }}>
+                    <div style={{ flex: '0.2' }}>
                         <DescriptionComponent steps={selectedTask.steps} completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
                     </div>
 
