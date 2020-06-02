@@ -3,7 +3,6 @@ import * as CategoryAction from '../../redux/actions/index'
 import { connect } from "react-redux";
 import './CategoriesList.css';
 import navigation from '../../assets/ic_navigation_menu.png';
-import itemlist from '../../assets/ic_item_list.png';
 import addIcon from '../../assets/ic_add.png';
 
 class CategoriesListIcon extends React.Component {

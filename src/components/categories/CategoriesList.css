@@ -36,10 +36,7 @@
 .inputCategory {
     border: 0;
     outline: 0;
-    margin: 10px;
-    background-color: #FAFAFA;
     font-size: 14px;
-    width: 100%;
     padding: 8px;
   }
 
@@ -47,6 +44,15 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+}
+
+.rowCWhiteBackground {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  align-items: center;
+  background-color: #FAFAFA;
+
 }
 
 
