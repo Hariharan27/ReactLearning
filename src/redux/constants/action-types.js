@@ -13,5 +13,6 @@ export const SORT_DECENDING = "SORT_DECENDING";
 export const ADD_STEP = 'ADD_STEP';
 export const DELETE_STEP = 'DELETE_STEP';
 export const MARKSTEP_COMPLETED = 'MARKSTEP_COMPLETED';
-
+export const ADDFILE = 'ADDFILE';
+export const REMOVEFILE = 'REMOVEFILE';
 

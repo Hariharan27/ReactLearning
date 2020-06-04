@@ -4,7 +4,8 @@ import {
    ADD_DESCRIPTION, MARK_US_COMPLETED, 
    DELETE_TASK, TOGGLE_SIDEBAR,
   SORT_ASCENDING,SORT_DECENDING,
-  ADD_STEP,DELETE_STEP,MARKSTEP_COMPLETED} from "../constants/action-types";
+  ADD_STEP,DELETE_STEP,MARKSTEP_COMPLETED,
+ ADDFILE,REMOVEFILE} from "../constants/action-types";
 import myday from '../../assets/ic_sun.png';
 import important from '../../assets/ic_start.png';
 import calender from '../../assets/ic_calendar.png';
@@ -158,9 +159,9 @@ function rootReducer(state = initialState, action) {
 
           case SORT_ASCENDING :       
         
-           var list  = state.categories;
+           var telist  = state.categories;
 
-           var sortedlist = list.filter(function (item) {
+           var sortedlist = telist.filter(function (item) {
             return item.isSelected;
           })[0].tasks.sort((a, b) => (a.name > b.name) ? 1 : -1);
 
@@ -210,8 +211,8 @@ function rootReducer(state = initialState, action) {
        };
 
        case DELETE_STEP:  
-       var stepslist = [];
-       var steptask = {};
+       var dstepslist = [];
+       var dsteptask = {};
        state.categories.forEach(function (item) {
          if (item.isSelected) {
            item.tasks.forEach(function (task) {
@@ -223,16 +224,16 @@ function rootReducer(state = initialState, action) {
                     }  
                })
                task.steps = asteps
-               steptask = task;
+               dsteptask = task;
               }
            })
          }
-         stepslist.push(item);
+         dstepslist.push(item);
        })
        return {
          ...state,
-         categories: stepslist,
-         selectedTask: steptask
+         categories: dstepslist,
+         selectedTask: dsteptask
  
        };
 
@@ -268,10 +269,59 @@ function rootReducer(state = initialState, action) {
        };
   
  
+       case ADDFILE:  
+       var filelist = [];
+       var filetask = {};
+       state.categories.forEach(function (item) {
+         if (item.isSelected) {
+           item.tasks.forEach(function (task) {
+             if (task.id === action.payload.selectedtask) {
+               task.files = action.payload.tfiles 
+               filetask = task;
+              }
+           })
+         }
+         filelist.push(item);
+       })
+       return {
+         ...state,
+         categories: filelist,
+         selectedTask: filetask
+ 
+       };
+
+       case REMOVEFILE:  
+       var rfilelist = [];
+       var rfiletask = {};
+       state.categories.forEach(function (item) {
+         if (item.isSelected) {
+           item.tasks.forEach(function (task) {
+            var afiles = [];
+            if (task.id === action.payload.selectedtask) {
+               task.files.forEach(function(step){
+                    if(step.id != action.payload.fileid){
+                      afiles.push(step);
+                    }  
+               })
+               task.files = afiles;
+               rfiletask = task;
+              }
+           })
+         }
+         rfilelist.push(item);
+       })
+       return {
+         ...state,
+         categories: rfilelist,
+         selectedTask: rfiletask
+ 
+       };
 
     default:
       return state;
   }
+
+  
 }
 
 export default rootReducer;

@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
 
 
                     <div style={{ flex: '0.2' }}>
-                        <DescriptionComponent steps={selectedTask.steps} completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
+                        <DescriptionComponent files={selectedTask!=null?selectedTask.files:null} steps={selectedTask.steps} completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
                     </div>
 
                 </div>

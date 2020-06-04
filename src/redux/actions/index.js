@@ -1,7 +1,7 @@
 import { ADD_CATEGORY,SELECT_CATEGORY,ADD_NEW_TASK,
   SELECT_TASK,MAKE_TASK_EDITABLE,IS_CATEGORY_EDITABLE,
   ADD_DESCRIPTION,MARK_US_COMPLETED,DELETE_TASK,TOGGLE_SIDEBAR,
-  SORT_ASCENDING,SORT_DECENDING,ADD_STEP,DELETE_STEP,MARKSTEP_COMPLETED } from "../constants/action-types";
+  SORT_ASCENDING,SORT_DECENDING,ADD_STEP,DELETE_STEP,MARKSTEP_COMPLETED,ADDFILE,REMOVEFILE } from "../constants/action-types";
 
 export function addCategory(payload) {
   return { type: ADD_CATEGORY, payload };
@@ -61,4 +61,12 @@ export function DeleteStep(payload){
 
 export function MarkStepCompleted(payload){
   return {type:MARKSTEP_COMPLETED,payload}
+}
+
+export function AddFile(payload){
+  return {type:ADDFILE,payload}
+}
+
+export function RemoveFile(payload){
+  return {type:REMOVEFILE,payload}
 }

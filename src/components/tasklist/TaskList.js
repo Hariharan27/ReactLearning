@@ -48,7 +48,7 @@ class TaskList extends React.Component {
         if (e.keyCode === 13) {
             this.setState({ taskname: '' })
             const now = Date.now(); // Unix timestamp in milliseconds
-            this.props.addNewTask({ id: now, name: this.state.taskname, description: '', isSelected: false, isCompleted: false, steps: [] });
+            this.props.addNewTask({ id: now, name: this.state.taskname, description: '', isSelected: false, isCompleted: false, steps: [],files:[] });
         }
     }
 

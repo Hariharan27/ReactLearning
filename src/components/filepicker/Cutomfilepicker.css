@@ -1,0 +1,36 @@
+.divmarginwithflexSelected{
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .addstepimage{
+    width: 16px;
+    height: 16px;
+    margin: 8px; 
+  }
+
+  .steplablewithcolor{
+    color: #0078D7;
+    margin-top: 8px;
+    font-size: 14px; 
+}
+
+.stepholder{
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stepname{
+  flex: 0.6;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.addcloseimage{
+  width: 16px;
+  margin: 10px;
+  height: 16px;
+ 
+}

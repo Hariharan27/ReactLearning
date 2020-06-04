@@ -8,9 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import addicon from '../../assets/ic_add.png';
 import greycircle from '../../assets/ic_circle_grey.png';
 import close from '../../assets/ic_close.png';
-import calender from '../../assets/ic_calendar.png';
-
-
+import Cutomfilepicker from '../filepicker/Cutomfilepicker';
 
 class DescriptionComponent extends React.Component {
 
@@ -52,7 +50,6 @@ class DescriptionComponent extends React.Component {
 
         return steps.map((item, index) => (
             <div className='stepholder' key={index}>
-                {/* <img alt='greycircle' onClick={() => this.onAddstepClicked(false)} className='addstepimage' src={greycircle} /> */}
                 <div className='addstepimage'>
                     <Customcheckbox checked={item.isCompleted} name={item.id} step={true} taskid={this.props.selectedTask.id} />
                 </div>
@@ -76,7 +73,7 @@ class DescriptionComponent extends React.Component {
 
 
     render() {
-        const { description, name, completed, selectedTask, steps } = this.props;
+        const { description, name, completed, selectedTask, steps,files } = this.props;
         const { iseditable, taskname } = this.state;
         return (
             <div className='Sidebar' >
@@ -108,10 +105,7 @@ class DescriptionComponent extends React.Component {
                     </Card>
 
                     <Card className='divmargintop'>
-                        <div className='divmarginwithflexSelected'>
-                            <img alt='greycircle' className='addstepimage' src={calender} />
-                            <div className='marginten' >Add due date</div>
-                        </div>
+                        <Cutomfilepicker taskid={selectedTask.id} files={files} />
                     </Card>
 
                     <Card className='divmargintop'>
