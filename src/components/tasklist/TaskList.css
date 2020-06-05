@@ -98,3 +98,14 @@ flex: 0.9;
 .stepsinfo{
   font-size: 12px;
 }
+
+.stepsinfowithMargin{
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+
+.TaskdivListItem {
+  display: flex;
+  flex-wrap: wrap;
+}

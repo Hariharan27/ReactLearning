@@ -52,7 +52,7 @@ class TaskList extends React.Component {
         }
     }
 
-    getListItems(category, selectedTask, steps) {
+    getListItems(category, selectedTask, steps,files) {
         return category[0].tasks.filter(function (task) {
             return task.isCompleted !== true;
         }).map((item, index) => (
@@ -62,12 +62,17 @@ class TaskList extends React.Component {
                     <MenuContext checked={item.isCompleted} id={item.id} child={
                         <div onClick={(e) => this.onTaskClick(item.id, e)}>
                             <div>{item.name}</div>
+                            <div className='TaskdivListItem'>
                             {steps != null && steps.length > 0 ?
                                 <div className='stepsinfo'>{steps.filter(function(step){
                                     return step.isCompleted
                                 }).length} of {steps.length}</div> :
                                 null
                             }
+                            { files != null && files.length > 0 ?
+                                <div className='stepsinfowithMargin'> @ files attached</div> :null }
+                            </div>
+
                         </div>} />
                 </div>
             </div>
@@ -100,7 +105,7 @@ class TaskList extends React.Component {
     }
 
     render() {
-        const { isEditable, category, selectedTask, steps } = this.props;
+        const { isEditable, category, selectedTask, steps,files } = this.props;
         const { taskname } = this.state;
         return (
             <div className='TaskContainer' >
@@ -121,10 +126,10 @@ class TaskList extends React.Component {
                     </div>}
 
                 <ListGroup variant="flush">
-                    {this.getListItems(category, selectedTask, steps)}
+                    {this.getListItems(category, selectedTask, steps,files)}
                 </ListGroup>
 
-                {this.getCompletedListItem(category, selectedTask, steps)}
+                {this.getCompletedListItem(category, selectedTask, steps,files)}
 
 
             </div>

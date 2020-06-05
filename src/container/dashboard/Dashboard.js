@@ -36,11 +36,11 @@ class Dashboard extends React.Component {
                     {showFullCategory
                         ?
                         <div style={{ flex: '0.6' }}>
-                            <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList files={selectedTask!=null?selectedTask.files:null} steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
                         <div style={{ flex: '0.79' }}>
-                            <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList files={selectedTask!=null?selectedTask.files:null} steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
 
                     }
@@ -73,11 +73,11 @@ class Dashboard extends React.Component {
                     {showFullCategory
                         ?
                         <div style={{ flex: '0.8' }}>
-                            <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList files={selectedTask!=null?selectedTask.files:null} steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
                         <div style={{ flex: '0.99' }}>
-                            <TaskList steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList files={selectedTask!=null?selectedTask.files:null} steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
 
                     }
