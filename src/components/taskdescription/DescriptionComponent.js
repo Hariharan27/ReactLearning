@@ -105,6 +105,9 @@ class DescriptionComponent extends React.Component {
                     </Card>
 
                     <Card className='divmargintop'>
+                    {
+                       console.log(files!=null&&files.length>0?'name===>'+files[0].name:null)
+                      }
                         <Cutomfilepicker taskid={selectedTask.id} files={files} />
                     </Card>
 

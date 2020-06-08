@@ -305,13 +305,14 @@ function rootReducer(state = initialState, action) {
       if (item.isSelected) {
         item.tasks.forEach(function (task) {
           if (task.id === action.payload.selectedtask) {
-            task.files = action.payload.tfiles
+            task.files.push(action.payload.tfiles);
             filetask = task;
           }
         })
       }
       filelist.push(item);
     })
+    console.log('------>');
     return {
       ...state,
       categories: filelist,

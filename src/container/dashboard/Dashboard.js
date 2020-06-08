@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
 
     render() {
 
-        const { selected, showDescription, categories, isCategoryEditable, selectedTask,showFullCategory } = this.props;
+        const { selected, showDescription, categories, isCategoryEditable, selectedTask, showFullCategory } = this.props;
         if (showDescription)
             return (
 
@@ -36,22 +36,22 @@ class Dashboard extends React.Component {
                     {showFullCategory
                         ?
                         <div style={{ flex: '0.6' }}>
-                            <TaskList files={selectedTask!=null?selectedTask.files:null} steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList files={selectedTask != null ? selectedTask.files : null} steps={selectedTask != null ? selectedTask.steps : null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
                         <div style={{ flex: '0.79' }}>
-                            <TaskList files={selectedTask!=null?selectedTask.files:null} steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList files={selectedTask != null ? selectedTask.files : null} steps={selectedTask != null ? selectedTask.steps : null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
 
                     }
 
 
                     <div style={{ flex: '0.2' }}>
-                        <DescriptionComponent files={selectedTask!=null?selectedTask.files:null} steps={selectedTask.steps} completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
+                        <DescriptionComponent files={selectedTask != null&&selectedTask.files.length >0 ? selectedTask.files: null} steps={selectedTask.steps} completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
                     </div>
 
                 </div>
-            ); 
+            );
         else
             return (
 
@@ -73,11 +73,11 @@ class Dashboard extends React.Component {
                     {showFullCategory
                         ?
                         <div style={{ flex: '0.8' }}>
-                            <TaskList files={selectedTask!=null?selectedTask.files:null} steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList files={selectedTask != null ? selectedTask.files : null} steps={selectedTask != null ? selectedTask.steps : null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
                         <div style={{ flex: '0.99' }}>
-                            <TaskList files={selectedTask!=null?selectedTask.files:null} steps={selectedTask!=null?selectedTask.steps:null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
+                            <TaskList files={selectedTask != null ? selectedTask.files : null} steps={selectedTask != null ? selectedTask.steps : null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
 
                     }
@@ -98,7 +98,7 @@ const mapStateToProps = state => {
         isCategoryEditable: state.isCategoryEditable,
         selected: selectedCategory,
         selectedTask: state.selectedTask,
-        showFullCategory:state.showFullCategory
+        showFullCategory: state.showFullCategory
     };
 };
 

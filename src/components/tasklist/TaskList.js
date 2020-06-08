@@ -63,13 +63,13 @@ class TaskList extends React.Component {
                         <div onClick={(e) => this.onTaskClick(item.id, e)}>
                             <div>{item.name}</div>
                             <div className='TaskdivListItem'>
-                            {steps != null && steps.length > 0 ?
+                            {steps != null && steps.length > 0 && selectedTask != null && selectedTask.id === item.id?
                                 <div className='stepsinfo'>{steps.filter(function(step){
                                     return step.isCompleted
                                 }).length} of {steps.length}</div> :
                                 null
                             }
-                            { files != null && files.length > 0 ?
+                            { files != null && files.length > 0 && selectedTask != null && selectedTask.id === item.id ?
                                 <div className='stepsinfowithMargin'> @ files attached</div> :null }
                             </div>
 

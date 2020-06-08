@@ -9,8 +9,9 @@ import close from '../../assets/ic_close.png';
  class Cutomfilepicker extends React.Component {
 
     onFilesChange = (files) => {
-        console.log(files)
-        this.props.addFile({selectedtask:this.props.taskid,tfiles:files});
+        var file = files[files.length-1];
+        console.log(files);
+        this.props.addFile({selectedtask:this.props.taskid,tfiles:file});
     }
 
     deletefile = (id) =>{
@@ -33,7 +34,6 @@ import close from '../../assets/ic_close.png';
     render() {
 
         const {files} = this.props;
-
         return (
             <div>
                 <div className="files">
@@ -43,7 +43,7 @@ import close from '../../assets/ic_close.png';
                     onError={this.onFilesError}
                     accepts={['image/png', '.pdf', 'audio/*']}
                     multiple
-                    maxFiles={3}
+                    maxFiles={10000000}
                     maxFileSize={10000000}
                     minFileSize={0}
                     clickable
@@ -55,7 +55,7 @@ import close from '../../assets/ic_close.png';
                 </Files>
             </div>
 
-                {this.getFileslist(files)}
+                {files != null&&files.length>0?this.getFileslist(files):null}
                
             </div>       
             
