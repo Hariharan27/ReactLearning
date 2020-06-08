@@ -29,7 +29,7 @@
 
 .rowchildTwo {
     flex: 0.9;
-    padding-left: 8px;
+    padding-left: 10px;
   }
 
   .TextNewCategory {
@@ -51,6 +51,15 @@
     color: #0078D7;
     flex: 0.9;
   }
+
+  .TasknameWithoutColor{
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 4px;
+    margin-bottom: 10px;
+    flex: 0.9;
+  }
+
 
   .Sort{
     font-size: 18px;

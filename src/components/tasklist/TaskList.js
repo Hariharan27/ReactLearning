@@ -88,7 +88,7 @@ class TaskList extends React.Component {
         return completedtask != null && completedtask.length > 0
             ?
             <ListGroup variant="flush">
-                <label className='TextNewCategory'> Completed </label>
+                <label className='TasknameWithoutColor' > Completed </label>
                 {completedtask.map((item, index) => (
                     <div key={index} className={selectedTask != null && selectedTask.id === item.id ? 'rowCSelected' : 'rowC'}>
                         <Customcheckbox checked={item.isCompleted} name={item.id} />
