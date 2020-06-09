@@ -49,13 +49,20 @@ class DescriptionComponent extends React.Component {
     getListStpItem = (steps) => {
 
         return steps.map((item, index) => (
-            <div className='stepholder' key={index}>
-                <div className='addstepimage'>
-                    <Customcheckbox checked={item.isCompleted} name={item.id} step={true} taskid={this.props.selectedTask.id} />
-                </div>
-                <div className='stepname'>{item.name}</div>
-                <img alt='delete' onClick={() => this.deleteStep(item.id)} className='addstepimage' src={close} />
+
+            <div key={index} style={{ marginLeft: '15px', marginBottom: '10px', display: 'flex', flexWrap: 'wrap',alignItems:'center' }} >
+                <Customcheckbox checked={item.isCompleted} name={item.id} step={true} taskid={this.props.selectedTask.id} />
+                <div style={{flex:'0.9',marginLeft:'10px'}}>{item.name}</div>
+               <img alt='delete' onClick={() => this.deleteStep(item.id)} className='addstepimage' src={close} />
             </div>
+
+            // <div className='stepholder' key={index}>
+            //     <div className='addstepimage'>
+            //         <Customcheckbox checked={item.isCompleted} name={item.id} step={true} taskid={this.props.selectedTask.id} />
+            //     </div>
+            //     <div className='stepname'>{item.name}</div>
+            //     <img alt='delete' onClick={() => this.deleteStep(item.id)} className='addstepimage' src={close} />
+            // </div>
         ));
     }
 
@@ -73,7 +80,7 @@ class DescriptionComponent extends React.Component {
 
 
     render() {
-        const { description, name, completed, selectedTask, steps,files } = this.props;
+        const { description, name, completed, selectedTask, steps, files } = this.props;
         const { iseditable, taskname } = this.state;
         return (
             <div className='Sidebar' >
@@ -89,25 +96,39 @@ class DescriptionComponent extends React.Component {
                         {this.getListStpItem(steps)}
                         {iseditable
                             ?
-                            <div className='divmarginwithflexSelected'>
-                                <img alt='greycircle' onClick={() => this.onAddstepClicked(false)} className='addstepimage' src={greycircle} />
+                            <div style={{ marginLeft: '10px', marginBottom: '10px', display: 'flex', flexWrap: 'wrap' }} >
+                                <img alt='greycircle' onClick={() => this.onAddstepClicked(false)} className='greycircletheme' src={greycircle} />
                                 <input placeholder={steps.length > 0 ? 'Next step' : 'Add step'} className='inputstep' type='text' value={taskname} onChange={this.onStepChange} onKeyDown={this.onEnteredPressed} />
                             </div>
-                            : <div onClick={() => this.onAddstepClicked(true)} className='divmarginwithflex'>
+                            // <div className='divmarginwithflexSelected'>
+                            //     <img alt='greycircle' onClick={() => this.onAddstepClicked(false)} className='greycircletheme' src={greycircle} />
+                            //     <input placeholder={steps.length > 0 ? 'Next step' : 'Add step'} className='inputstep' type='text' value={taskname} onChange={this.onStepChange} onKeyDown={this.onEnteredPressed} />
+                            // </div>
+                            :
+                            <div style={{ marginLeft: '10px', marginBottom: '10px', display: 'flex', flexWrap: 'wrap' }} onClick={() => this.onAddstepClicked(true)} >
                                 <img alt='addicon' className='addstepimage' src={addicon} />
                                 {steps.length > 0 ?
                                     <div className='steplablewithcolor'>Next step</div>
                                     :
                                     <div className='steplablewithcolor'>Add step</div>
                                 }
-                            </div>}
+                            </div>
+                            // <div onClick={() => this.onAddstepClicked(true)} className='divmarginwithflex'>
+                            //     <img alt='addicon' className='addstepimage' src={addicon} />
+                            //     {steps.length > 0 ?
+                            //         <div className='steplablewithcolor'>Next step</div>
+                            //         :
+                            //         <div className='steplablewithcolor'>Add step</div>
+                            //     }
+                            // </div>
+                        }
 
                     </Card>
 
                     <Card className='divmargintop'>
-                    {
-                       console.log(files!=null&&files.length>0?'name===>'+files[0].name:null)
-                      }
+                        {
+                            console.log(files != null && files.length > 0 ? 'name===>' + files[0].name : null)
+                        }
                         <Cutomfilepicker taskid={selectedTask.id} files={files} />
                     </Card>
 

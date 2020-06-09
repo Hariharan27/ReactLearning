@@ -3,7 +3,7 @@
     color: #0078D7;
     flex: 0.9;
     font-size: 14px; 
-    padding-left: 10px;
+    padding-left: 15px;
 }
 .UnselectedSidebarText{
     color: black;
@@ -57,9 +57,16 @@
 
 
 .categorylogo{
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
+  margin: 10px;
 }
+
+.categorylogoadd {
+  width: 20px;
+  height: 20px;
+}
+
 
 .navigaitonlogo {
   margin: 10px;

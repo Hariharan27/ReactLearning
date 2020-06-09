@@ -71,7 +71,7 @@ class CategoriesListIcon extends React.Component {
             {this.props.categories.map((item, index) => this.getUIbasedonLength(item, index))}
             {isCategoryEditable
                 ? <input placeholder={'+ New list'} type='text' value={categoryname} onKeyDown={this.onEnteredPressed} className='inputCategory' onChange={this.categoryChange} />
-            : <img className='navigaitonlogo' src={addIcon} alt='Newlist' onClick={this.makeEditable} /> }
+            : <img className='categorylogo' src={addIcon} alt='Newlist' onClick={this.makeEditable} /> }
         </div>);
     }
 

@@ -74,11 +74,11 @@ class CategoriesList extends React.Component {
             {this.props.categories.map((item, index) => this.getUIbasedonLength(item, index))}
             {isCategoryEditable
                 ? <div className='rowCWhiteBackground' >
-                    <img alt='New list' src={addIcon} />
+                    <img className='categorylogoadd' alt='New list' src={addIcon} />
                     <input placeholder={'New list'} type='text' value={categoryname} onKeyDown={this.onEnteredPressed} className='inputCategory' onChange={this.categoryChange} />
                 </div>
                 : <div className='rowC' onClick={this.makeEditable}>
-                    <img alt='New list' src={addIcon} />
+                    <img className='categorylogoadd' alt='New list' src={addIcon} />
                     <div className='SelectedSidebarText'> New list</div>
                 </div>}
         </div>);
