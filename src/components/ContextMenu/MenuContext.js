@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import { Card } from 'react-bootstrap';
-import * as CategoryAction from '../../redux/actions/index';
+import * as CategoryAction from '../../actions/index';
 import { connect } from "react-redux";
 
 class MenuContext extends React.Component {

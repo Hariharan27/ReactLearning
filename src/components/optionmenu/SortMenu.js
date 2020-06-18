@@ -3,7 +3,7 @@ import {Dropdown} from 'react-bootstrap';
 import sortlogo from '../../assets/ic_sort.png';
 import './SortMenu.css';
 import { connect } from "react-redux";
-import * as CategoryAction from '../../redux/actions/index';
+import * as CategoryAction from '../../actions/index';
 
 
  class SortMenu extends React.Component {

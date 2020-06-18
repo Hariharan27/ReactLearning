@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import './TaskList.css';
 import { connect } from "react-redux";
-import * as CategoryAction from '../../redux/actions/index';
+import * as CategoryAction from '../../actions/index';
 import addicon from '../../assets/ic_add.png';
 import greycircle from '../../assets/ic_circle_grey.png';
 import Customcheckbox from '../customcheckbox/Customcheckbox';

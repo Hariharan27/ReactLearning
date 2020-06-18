@@ -22,8 +22,8 @@
 }
 
 .Sidebar{
-    background-color: #F4F4F4;
     height: 100%;
+    flex: 0.2;
   }
 
 .TextNewCategory {

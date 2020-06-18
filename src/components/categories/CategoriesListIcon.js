@@ -1,5 +1,5 @@
 import React from 'react';
-import * as CategoryAction from '../../redux/actions/index'
+import * as CategoryAction from '../../actions/index'
 import { connect } from "react-redux";
 import './CategoriesList.css';
 import navigation from '../../assets/ic_navigation_menu.png';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import * as CategoryAction from '../../redux/actions/index'
+import * as CategoryAction from '../../actions/index'
 import Customcheckbox from '../customcheckbox/Customcheckbox'
 import './DescriptionComponent.css'
 import { Card } from '@material-ui/core';

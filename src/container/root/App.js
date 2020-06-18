@@ -1,15 +1,12 @@
 import React from 'react';
-import { Provider } from "react-redux";
-import store from '../../redux/store/index'
-import Dashboard from '../dashboard/Dashboard'
 import Menu from '../../components/menu/Menu'
+import Dashboard from '../../container/dashboard/Dashboard'
+import './App.css';
 
 function App() {
   return (
-    <Provider store={store}>
-      <Menu></Menu>
-      <Dashboard/>
-  </Provider>
+    <div>
+    </div>
   );
 }
 

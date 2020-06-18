@@ -1,9 +1,9 @@
 import React from 'react';
 import Files from 'react-files';
-import '../filepicker/Cutomfilepicker.css';
+import './Cutomfilepicker.css';
 import attachicon from '../../assets/ic_attach.png'
 import { connect } from "react-redux";
-import * as FileAction from '../../redux/actions/index'
+import * as FileAction from '../../actions/index'
 import close from '../../assets/ic_close.png';
 
  class Cutomfilepicker extends React.Component {
