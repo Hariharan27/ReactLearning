@@ -3,6 +3,49 @@
   position: absolute;
   width: 100%;
   flex-wrap: wrap;
-  display: flex;
+  display: inline-flex;
+  flex-direction: row;
+  flex-flow: row;
 }
 
+.leftboxtwenty { 
+  float:left;  
+  width:20%; 
+  height:100vh; 
+} 
+
+
+.middleboxsixty { 
+  float:left;  
+  width:60%; 
+  height:100vh;
+}
+.middleboxeighty { 
+  float:left;  
+  width:75%; 
+  height:100vh;
+} 
+
+.rightboxeighty{ 
+  float:right; 
+  width:80%; 
+  height:100vh;
+} 
+
+.rightboxtwenty{ 
+  float:right; 
+  width:20%; 
+  height:100vh;
+} 
+
+.rightboxnintyfive{ 
+  float:right; 
+  width:95%; 
+  height:100vh;
+} 
+
+.leftboxicon {
+  float:left;  
+  width:5%; 
+  height:100vh;
+}

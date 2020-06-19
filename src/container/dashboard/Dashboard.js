@@ -23,11 +23,11 @@ class Dashboard extends React.Component {
 
                     {showFullCategory
                         ?
-                        <div style={{ flex: 0.2 }}>
+                        <div className='leftboxtwenty' >
                             <CategoriesList categories={categories} isCategoryEditable={isCategoryEditable} />
                         </div>
                         :
-                        <div style={{ flex: '0.01' }}>
+                        <div className='leftboxicon'>
                             <CategoriesListIcon categories={categories} isCategoryEditable={isCategoryEditable} />
                         </div>
 
@@ -35,18 +35,18 @@ class Dashboard extends React.Component {
 
                     {showFullCategory
                         ?
-                        <div style={{ flex: '0.6' }}>
+                        <div className='middleboxsixty'>
                             <TaskList files={selectedTask != null ? selectedTask.files : null} steps={selectedTask != null ? selectedTask.steps : null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
-                        <div style={{ flex: '0.79' }}>
+                        <div className='middleboxeighty'>
                             <TaskList files={selectedTask != null ? selectedTask.files : null} steps={selectedTask != null ? selectedTask.steps : null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
 
                     }
 
 
-                    <div style={{ flex: '0.2' }}>
+                    <div className='rightboxtwenty'>
                         <DescriptionComponent files={selectedTask != null&&selectedTask.files.length >0 ? selectedTask.files: null} steps={selectedTask.steps} completed={selectedTask.isCompleted} name={selectedTask.name} description={selectedTask.description} selectedTask={selectedTask} />
                     </div>
 
@@ -57,14 +57,13 @@ class Dashboard extends React.Component {
 
                 <div className='fill-window' >
 
-
                     {showFullCategory
                         ?
-                        <div style={{ flex: 0.2 }}>
+                        <div className='leftboxtwenty'>
                             <CategoriesList categories={categories} isCategoryEditable={isCategoryEditable} />
                         </div>
                         :
-                        <div style={{ flex: '0.01' }}>
+                        <div className='leftboxicon'>
                             <CategoriesListIcon categories={categories} isCategoryEditable={isCategoryEditable} />
                         </div>
 
@@ -72,11 +71,11 @@ class Dashboard extends React.Component {
 
                     {showFullCategory
                         ?
-                        <div style={{ flex: '0.8' }}>
+                        <div className='rightboxeighty'>
                             <TaskList files={selectedTask != null ? selectedTask.files : null} steps={selectedTask != null ? selectedTask.steps : null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
                         :
-                        <div style={{ flex: '0.99' }}>
+                        <div className='rightboxnintyfive'>
                             <TaskList files={selectedTask != null ? selectedTask.files : null} steps={selectedTask != null ? selectedTask.steps : null} showFullCategory={showFullCategory} selectedTask={selectedTask} category={selected} />
                         </div>
 
